@@ -1,0 +1,12 @@
+RETRAIN REPORT -- 2026-04-12 21:39
+Total windows: 30,880
+Label 0 (LOW):  24,985
+Label 1 (HIGH): 5,895
+Subjects: ['sub-01', 'sub-02', 'sub-03']
+GroupKFold CV Accuracy: 0.7983 +/- 0.0114
+GroupKFold CV F1:       0.5114 +/- 0.0423
+
+Per-fold results:
+  Fold 1: acc=0.8029  F1=0.5375
+  Fold 2: acc=0.8094  F1=0.4518
+  Fold 3: acc=0.7825  F1=0.5449

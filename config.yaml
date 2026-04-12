@@ -1,0 +1,83 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# neuroload/config.yaml
+# Single source of truth for ALL pipeline parameters.
+# Every script reads from here — change once, applies everywhere.
+# ─────────────────────────────────────────────────────────────────────────────
+
+eeg:
+  sfreqraw: 500
+  sfreqresample: 128
+  nchannels: 64
+  highpasshz: 0.5
+  notchhz: [50, 100]
+  epochdurations: 2.0
+  epochoverlaps: 1.0
+
+
+bands:
+  delta: [1, 4]
+  theta: [4, 8]
+  alpha: [8, 13]
+  beta:  [13, 30]
+  gamma: [30, 45]
+
+psd:
+  n_fft: 256
+  n_overlap: 128
+  method: "welch"
+
+features:
+  n_total: 313            # Total features per window (5 bands × 64 ch × metrics)
+  metrics:
+    - absolute_power
+    - relative_power
+    - hjorth_mobility
+    - hjorth_complexity
+
+labels:
+  0: "LOW"
+  1: "MEDIUM"
+  2: "HIGH"
+  colors:
+    LOW:    "#2ecc71"
+    MEDIUM: "#f39c12"
+    HIGH:   "#e74c3c"
+
+model:
+  # YOUR actual model filenames (from screenshot)
+  xgb_path:        "models/xgb_final.pkl"
+  xgb_model_path:  "models/xgb_model.pkl"
+  scaler_path:     "models/xgb_scaler_final.pkl"
+  feat_cols_path:  "models/xgb_feature_cols_final.pkl"
+  feat_cols_json:  "models/xgb_feature_columns.json"
+  rf_path:         "models/rf_model.pkl"
+  rf_scaler_path:  "models/rf_scaler.pkl"
+  rf_feat_json:    "models/rf_feature_columns.json"
+  shap_beeswarm:   "models/shap_beeswarm_final.png"
+  shap_bar:        "models/shap_global_bar_final.png"
+  shap_force:      "models/shap_force_single_final.png"
+  shap_imp_csv:    "models/shap_importance_final.csv"
+  feat_imp_csv:    "models/feature_importance_final.csv"
+  n_estimators: 200
+  max_depth: 5
+  learning_rate: 0.05
+  subsample: 0.8
+  colsample_bytree: 0.8
+  cv_splits: 3
+  subjects: ["sub-01", "sub-02", "sub-03"]
+
+streaming:
+  board_id: -1
+  buffer_size_s: 10
+  inference_interval_s: 1.0
+
+alerts:
+  consecutive_high_threshold: 3
+  high_prob_threshold: 0.70
+
+data:
+  parquet_path:   "data/processed/features_sota.parquet"
+  feat_cols_json: "data/processed/feature_columns.json"
+  raw_root:       "data/raw"
+  subject_col:    "subject"
+  label_col:      "label"

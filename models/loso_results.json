@@ -1,0 +1,23 @@
+{
+  "per_subject": {
+    "ses-S1": {
+      "accuracy": 0.5067,
+      "f1_macro": 0.2514,
+      "n_windows": 5488
+    },
+    "ses-S2": {
+      "accuracy": 0.5122,
+      "f1_macro": 0.2529,
+      "n_windows": 5543
+    },
+    "ses-S3": {
+      "accuracy": 0.5049,
+      "f1_macro": 0.2508,
+      "n_windows": 5482
+    }
+  },
+  "overall_acc": 0.508,
+  "overall_f1": 0.2517,
+  "n_subjects": 3,
+  "n_windows_total": 16513
+}
